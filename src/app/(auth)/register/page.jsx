@@ -15,7 +15,6 @@ import {
   FiGlobe,
   FiFileText,
   FiShoppingBag,
-
   FiAward,
   FiShield,
   FiTrendingUp,
@@ -91,14 +90,14 @@ const Register = () => {
   };
 
   const RoleSelection = () => (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br  flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="text-center mb-12">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+          <div className="bg-white text-[#1e518e] p-4 rounded-2xl w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
             <FiUserPlus className="h-10 w-10" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Join TradeAuct</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-black mb-4">Join TradeAuct</h1>
+          <p className="text-xl text-black max-w-2xl mx-auto">
             Choose your path and start your journey with us today
           </p>
         </div>
@@ -110,10 +109,10 @@ const Register = () => {
             className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
           >
             <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-gray-100 overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+              <div className="h-2 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee]"></div>
               <div className="p-8">
-                <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-2xl mb-6 group-hover:bg-blue-200 transition-colors">
-                  <FiUser className="h-8 w-8 text-blue-600" />
+                <div className="flex items-center justify-center w-16 h-16 bg-blue-50 rounded-2xl mb-6 group-hover:bg-blue-100 transition-colors">
+                  <FiUser className="h-8 w-8 text-[#1e518e]" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">I'm a Customer</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -122,12 +121,12 @@ const Register = () => {
                 <ul className="space-y-3 mb-8">
                   {['Browse thousands of products', 'Place bids in real-time', 'Secure payment processing', 'Order tracking'].map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-700">
-                      <FiCheck className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                      <FiCheck className="h-5 w-5 text-[#1e518e] mr-3 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-center py-4 rounded-xl font-semibold group-hover:from-blue-600 group-hover:to-cyan-600 transition-all">
+                <div className="bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white text-center py-4 rounded-xl font-semibold group-hover:from-[#1a4780] group-hover:to-[#005599] transition-all">
                   Start Shopping
                 </div>
               </div>
@@ -140,10 +139,10 @@ const Register = () => {
             className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
           >
             <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-gray-100 overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              <div className="h-2 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee]"></div>
               <div className="p-8">
-                <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-2xl mb-6 group-hover:bg-purple-200 transition-colors">
-                  {/* <FiStore className="h-8 w-8 text-purple-600" /> */}
+                <div className="flex items-center justify-center w-16 h-16 bg-blue-50 rounded-2xl mb-6 group-hover:bg-blue-100 transition-colors">
+                  <FiShoppingBag className="h-8 w-8 text-[#1e518e]" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">I'm a Vendor</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -152,12 +151,12 @@ const Register = () => {
                 <ul className="space-y-3 mb-8">
                   {['Free vendor upgrade', 'Reach thousands of buyers', 'Powerful store dashboard', 'Secure transactions'].map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-700">
-                      <FiCheck className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                      <FiCheck className="h-5 w-5 text-[#1e518e] mr-3 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-4 rounded-xl font-semibold group-hover:from-purple-600 group-hover:to-pink-600 transition-all">
+                <div className="bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white text-center py-4 rounded-xl font-semibold group-hover:from-[#1a4780] group-hover:to-[#005599] transition-all">
                   Start Selling
                 </div>
               </div>
@@ -166,9 +165,9 @@ const Register = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-gray-600">
+          <p className="text-white">
             Already have an account?{' '}
-            <a href="/login" className="text-blue-600 font-semibold hover:underline">
+            <a href="/login" className="text-white font-semibold hover:underline">
               Sign in here
             </a>
           </p>
@@ -178,7 +177,7 @@ const Register = () => {
   );
 
   const CustomerSignup = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br  flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           {/* Header */}
@@ -212,7 +211,7 @@ const Register = () => {
                   required
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -233,7 +232,7 @@ const Register = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Enter your email"
                 />
               </div>
@@ -254,7 +253,7 @@ const Register = () => {
                   required
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -275,7 +274,7 @@ const Register = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-12 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-12 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Create a strong password"
                 />
                 <button
@@ -302,7 +301,7 @@ const Register = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Enter your address"
                 />
               </div>
@@ -316,15 +315,15 @@ const Register = () => {
                 required
                 checked={formData.acceptTerms}
                 onChange={handleInputChange}
-                className="mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="mt-1 rounded border-gray-300 text-[#1e518e] focus:ring-[#1e518e]"
               />
               <label className="text-sm text-gray-700">
                 I agree to the{' '}
-                <a href="#" className="text-blue-600 hover:underline font-semibold">
+                <a href="#" className="text-[#1e518e] hover:underline font-semibold">
                   Terms of Service
                 </a>{' '}
                 and{' '}
-                <a href="#" className="text-blue-600 hover:underline font-semibold">
+                <a href="#" className="text-[#1e518e] hover:underline font-semibold">
                   Privacy Policy
                 </a>
               </label>
@@ -333,7 +332,7 @@ const Register = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-4 px-6 rounded-xl font-bold hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+              className="w-full bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white py-4 px-6 rounded-xl font-bold hover:from-[#1a4780] hover:to-[#005599] transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Create Customer Account
             </button>
@@ -376,7 +375,7 @@ const Register = () => {
   );
 
   const VendorSignup = () => (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br  flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           {/* Header */}
@@ -394,12 +393,12 @@ const Register = () => {
             </div>
           </div>
 
-          <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 mb-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6">
             <div className="flex items-start space-x-3">
-              <FiAward className="h-6 w-6 text-purple-600 mt-0.5 flex-shrink-0" />
+              <FiAward className="h-6 w-6 text-[#1e518e] mt-0.5 flex-shrink-0" />
               <div>
-                <h4 className="font-bold text-purple-900">Free Vendor Upgrade</h4>
-                <p className="text-purple-700 text-sm mt-1">
+                <h4 className="font-bold text-[#1e518e]">Free Vendor Upgrade</h4>
+                <p className="text-[#1e518e] text-sm mt-1">
                   Start selling immediately after basic registration. Get verified later for the trusted badge.
                 </p>
               </div>
@@ -422,7 +421,7 @@ const Register = () => {
                   required
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Your full name"
                 />
               </div>
@@ -443,7 +442,7 @@ const Register = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="business@email.com"
                 />
               </div>
@@ -464,7 +463,7 @@ const Register = () => {
                   required
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
@@ -485,7 +484,7 @@ const Register = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-12 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-12 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Create secure password"
                 />
                 <button
@@ -499,22 +498,22 @@ const Register = () => {
             </div>
 
             {/* Terms */}
-            <div className="flex items-start space-x-3 p-4 bg-purple-50 rounded-xl">
+            <div className="flex items-start space-x-3 p-4 bg-blue-50 rounded-xl">
               <input
                 type="checkbox"
                 name="acceptTerms"
                 required
                 checked={formData.acceptTerms}
                 onChange={handleInputChange}
-                className="mt-1 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                className="mt-1 rounded border-gray-300 text-[#1e518e] focus:ring-[#1e518e]"
               />
               <label className="text-sm text-gray-700">
                 I agree to the{' '}
-                <a href="#" className="text-purple-600 hover:underline font-semibold">
+                <a href="#" className="text-[#1e518e] hover:underline font-semibold">
                   Vendor Agreement
                 </a>{' '}
                 and{' '}
-                <a href="#" className="text-purple-600 hover:underline font-semibold">
+                <a href="#" className="text-[#1e518e] hover:underline font-semibold">
                   Privacy Policy
                 </a>
               </label>
@@ -522,7 +521,7 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+              className="w-full bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white py-4 px-6 rounded-xl font-bold hover:from-[#1a4780] hover:to-[#005599] transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Continue to Store Setup
             </button>
@@ -533,7 +532,7 @@ const Register = () => {
   );
 
   const VendorStoreProfile = () => (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           {/* Header */}
@@ -554,16 +553,16 @@ const Register = () => {
           {/* Progress */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="w-8 h-8 bg-[#1e518e] text-white rounded-full flex items-center justify-center font-bold">
                 1
               </div>
               <div className="ml-3">
-                <div className="text-sm font-semibold text-purple-600">Store Profile</div>
+                <div className="text-sm font-semibold text-[#1e518e]">Store Profile</div>
                 <div className="text-xs text-gray-500">Required</div>
               </div>
             </div>
             <div className="flex-1 h-1 bg-gray-200 mx-4">
-              <div className="h-1 bg-purple-600 w-1/2"></div>
+              <div className="h-1 bg-[#1e518e] w-1/2"></div>
             </div>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-bold">
@@ -584,7 +583,7 @@ const Register = () => {
               </label>
               <div className="flex justify-center">
                 <label className="relative cursor-pointer group">
-                  <div className="w-32 h-32 border-3 border-dashed border-gray-300 rounded-2xl flex items-center justify-center group-hover:border-purple-400 transition-colors bg-gray-50">
+                  <div className="w-32 h-32 border-3 border-dashed border-gray-300 rounded-2xl flex items-center justify-center group-hover:border-[#1e518e] transition-colors bg-gray-50">
                     {formData.storeLogo ? (
                       <img 
                         src={URL.createObjectURL(formData.storeLogo)} 
@@ -623,7 +622,7 @@ const Register = () => {
                 required
                 value={formData.storeName}
                 onChange={handleInputChange}
-                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                 placeholder="Enter your store name"
               />
             </div>
@@ -639,7 +638,7 @@ const Register = () => {
                 rows={4}
                 value={formData.storeBio}
                 onChange={handleInputChange}
-                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all resize-none"
+                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all resize-none"
                 placeholder="Tell customers about your store and products..."
               />
             </div>
@@ -656,7 +655,7 @@ const Register = () => {
                   required
                   value={formData.country}
                   onChange={handleInputChange}
-                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="Country"
                 />
               </div>
@@ -670,7 +669,7 @@ const Register = () => {
                   required
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="City"
                 />
               </div>
@@ -679,7 +678,7 @@ const Register = () => {
             {/* Social Links */}
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-gray-900 flex items-center">
-                <FiGlobe className="h-5 w-5 mr-2 text-purple-600" />
+                <FiGlobe className="h-5 w-5 mr-2 text-[#1e518e]" />
                 Social Links (Optional)
               </h3>
               
@@ -692,7 +691,7 @@ const Register = () => {
                   name="website"
                   value={formData.website}
                   onChange={handleInputChange}
-                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                   placeholder="https://yourstore.com"
                 />
               </div>
@@ -707,7 +706,7 @@ const Register = () => {
                     name="facebook"
                     value={formData.facebook}
                     onChange={handleInputChange}
-                    className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                    className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                     placeholder="Facebook page URL"
                   />
                 </div>
@@ -720,7 +719,7 @@ const Register = () => {
                     name="instagram"
                     value={formData.instagram}
                     onChange={handleInputChange}
-                    className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                    className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                     placeholder="Instagram profile URL"
                   />
                 </div>
@@ -729,7 +728,7 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+              className="w-full bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white py-4 px-6 rounded-xl font-bold hover:from-[#1a4780] hover:to-[#005599] transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Save Store Profile & Continue
             </button>
@@ -740,7 +739,7 @@ const Register = () => {
   );
 
   const VendorVerification = () => (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#1e518e] to-[#0061b0ee] flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           {/* Header */}
@@ -771,11 +770,11 @@ const Register = () => {
             </div>
             <div className="flex-1 h-1 bg-green-500 mx-4"></div>
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="w-8 h-8 bg-[#1e518e] text-white rounded-full flex items-center justify-center font-bold">
                 2
               </div>
               <div className="ml-3">
-                <div className="text-sm font-semibold text-purple-600">Verification</div>
+                <div className="text-sm font-semibold text-[#1e518e]">Verification</div>
                 <div className="text-xs text-gray-500">Optional</div>
               </div>
             </div>
@@ -800,20 +799,20 @@ const Register = () => {
 
           {/* Benefits */}
           <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-purple-50 rounded-xl p-4 text-center">
-              <FiShield className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-purple-900">Trust & Credibility</h4>
-              <p className="text-purple-700 text-sm mt-1">Build buyer confidence</p>
+            <div className="bg-blue-50 rounded-xl p-4 text-center">
+              <FiShield className="h-8 w-8 text-[#1e518e] mx-auto mb-2" />
+              <h4 className="font-semibold text-[#1e518e]">Trust & Credibility</h4>
+              <p className="text-[#1e518e] text-sm mt-1">Build buyer confidence</p>
             </div>
-            <div className="bg-purple-50 rounded-xl p-4 text-center">
-              <FiTrendingUp className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-purple-900">More Sales</h4>
-              <p className="text-purple-700 text-sm mt-1">Higher conversion rates</p>
+            <div className="bg-blue-50 rounded-xl p-4 text-center">
+              <FiTrendingUp className="h-8 w-8 text-[#1e518e] mx-auto mb-2" />
+              <h4 className="font-semibold text-[#1e518e]">More Sales</h4>
+              <p className="text-[#1e518e] text-sm mt-1">Higher conversion rates</p>
             </div>
-            <div className="bg-purple-50 rounded-xl p-4 text-center">
-              <FiAward className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-purple-900">Verified Badge</h4>
-              <p className="text-purple-700 text-sm mt-1">Stand out from competitors</p>
+            <div className="bg-blue-50 rounded-xl p-4 text-center">
+              <FiAward className="h-8 w-8 text-[#1e518e] mx-auto mb-2" />
+              <h4 className="font-semibold text-[#1e518e]">Verified Badge</h4>
+              <p className="text-[#1e518e] text-sm mt-1">Stand out from competitors</p>
             </div>
           </div>
 
@@ -828,7 +827,7 @@ const Register = () => {
                 name="tradeLicenseNumber"
                 value={formData.tradeLicenseNumber}
                 onChange={handleInputChange}
-                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                 placeholder="Enter license number"
               />
             </div>
@@ -843,7 +842,7 @@ const Register = () => {
                 name="issuingAuthority"
                 value={formData.issuingAuthority}
                 onChange={handleInputChange}
-                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                className="block w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                 placeholder="Name of issuing authority"
               />
             </div>
@@ -862,7 +861,7 @@ const Register = () => {
                   name="licenseExpiry"
                   value={formData.licenseExpiry}
                   onChange={handleInputChange}
-                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 transition-all"
+                  className="block w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e518e] focus:border-transparent bg-gray-50 transition-all"
                 />
               </div>
             </div>
@@ -872,7 +871,7 @@ const Register = () => {
               <label className="block text-sm font-semibold text-gray-700">
                 Upload Trade License Document
               </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-purple-400 transition-colors bg-gray-50">
+              <div className="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-[#1e518e] transition-colors bg-gray-50">
                 <label className="cursor-pointer">
                   {formData.licenseFile ? (
                     <div className="text-center">
@@ -916,7 +915,7 @@ const Register = () => {
               </button>
               <button
                 type="submit"
-                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                className="flex-1 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white py-4 px-6 rounded-xl font-bold hover:from-[#1a4780] hover:to-[#005599] transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 Submit for Verification
               </button>

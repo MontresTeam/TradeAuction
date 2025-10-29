@@ -1,9 +1,9 @@
-import Header from "../../components/layout/Header";
+import LandingPage from "../app/pages/LandingPage";
 
 export default function Home() {
   return (
     <div>
-   <Header/>
+      <LandingPage />
     </div>
   );
 }

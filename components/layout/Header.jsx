@@ -74,10 +74,7 @@ const Header = () => {
               <FiGrid className="h-4 w-4" />
               <span>Categories</span>
             </a>
-            <a href="#" className="flex items-center space-x-1 text-gray-700 hover:text-[#1e518e] font-medium transition duration-200">
-              <FiAward className="h-4 w-4" />
-              <span>Featured</span>
-            </a>
+           
           </nav>
 
           {/* Desktop Action Buttons */}
@@ -91,26 +88,15 @@ const Header = () => {
             {/* Wishlist */}
             <button className="relative text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
               <FiHeart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                3
-              </span>
+              
             </button>
 
             {/* Cart */}
             <button className="relative text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
               <FiShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-[#1e518e] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                2
-              </span>
+             
             </button>
 
-            {/* Notifications */}
-            <button className="relative text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-              <FiBell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-[#0061b0ee] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                5
-              </span>
-            </button>
 
             {/* Auth Buttons / User Menu */}
             {isLoggedIn ? (

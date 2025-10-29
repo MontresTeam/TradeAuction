@@ -1,1 +1,153 @@
 @import "tailwindcss";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+
+@tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+
+
+
+@layer base {
+  body {
+    font-size: 17px;
+    line-height: 30px;
+    font-weight: 400;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    background: #eee;
+  }
+  
+  body, div {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  img {
+    -ms-interpolation-mode: bicubic;
+    border: 0;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .creative-fullpage--slider {
+    background-color: #ffffff;
+    z-index: 2;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 16px;
+    display: flex;
+    clip-path: none !important;
+  }
+  
+  .slider-inner-overlay {
+    background-color: transparent;
+    background-image: radial-gradient(at center right, #FFFFFF00 50%, #00000096 100%);
+  }
+  
+  .clip-path-none {
+    clip-path: none !important;
+  }
+  
+  .clip-path-circle-25 {
+    clip-path: circle(25% at 50% 50%);
+  }
+  
+  .clip-path-circle-50 {
+    clip-path: circle(50% at 50% 50%);
+  }
+  
+  .bg-radial-gradient-at-center-right {
+    background-image: radial-gradient(at center right, #FFFFFF00 50%, #00000096 100%);
+  }
+}
+
+@layer utilities {
+  .font-dancing {
+    font-family: "Dancing Script", cursive;
+  }
+  
+  .font-inter {
+    font-family: "Inter", sans-serif;
+  }
+}
+
+/* Swiper custom styles */
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #ffffff !important;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .creative-fullpage--slider .swiper-slide .slider-inner .swiper-content {
+    width: 100%;
+    text-align: center;
+    left: 0;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    height: 50px !important;
+    width: 50px !important;
+    line-height: 50px !important;
+    background: rgba(255, 255, 255, 0.23) !important;
+  }
+  
+  .slider-pagination-area {
+    width: 200px !important;
+  }
+  
+  .swiper-button-next span,
+  .swiper-button-prev span {
+    font-size: 30px !important;
+  }
+  
+  .swiper-pagination {
+    width: 200px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .swiper-slide .slider-inner .swiper-content .title-area .title {
+    font-size: 64px;
+  }
+  
+  .swiper-slide .slider-inner .swiper-content .title-area .tag {
+    margin-bottom: 0px;
+  }
+  
+  .swiper-slide .slider-inner .swiper-content p.disc {
+    margin: 20px auto;
+    font-size: 16px;
+    width: 95%;
+  }
+  
+  .slider-pagination-area {
+    display: none !important;
+  }
+  
+  .swiper-slide .slider-inner .swiper-content p.disc br {
+    display: none;
+  }
+}
