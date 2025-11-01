@@ -1,270 +1,289 @@
 "use client"
-import React, { useState } from 'react';
-import { 
-  FiUser, 
-  FiLogIn, 
-  FiUserPlus, 
-  FiMenu, 
-  FiX, 
-  FiSearch,
-  FiBell,
-  FiHeart,
-  FiShoppingCart,
-  FiHome,
-  FiAward,
-  FiGrid,
-  FiInfo,
-  FiPhone,
-  FiClock
-} from 'react-icons/fi';
-import { useRouter } from "next/navigation";
+import React, { useState, useRef, useEffect } from 'react';
+import { FaUser, FaGavel, FaSearch, FaBars, FaTimes, FaChevronDown, FaArrowRight } from 'react-icons/fa';
 
 const Header = () => {
-  const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const mobileMenuRef = useRef(null);
+  const categoriesDropdownRef = useRef(null);
 
-  const handleSignup = ()=>{
-    router.push('/register')
-  }
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+      if (categoriesDropdownRef.current && !categoriesDropdownRef.current.contains(event.target)) {
+        setIsCategoriesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const categories = [
+    { name: "Watches", href: "/watches" },
+    { name: "Jewelry", href: "/categories/jewelry"},
+    { name: "Bags", href: "/categories/bags" },
+    { name: "Electronics", href: "/categories/electronics"},
+    { name: "Collectibles", href: "/categories/collectibles" },
+  ];
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Live Auctions", href: "/LiveAuction", badge: "Live" },
+    { name: "Upcoming Auctions", href: "/UpcomingAuction" },
+    { name: "Past Auctions", href: "/past" },
+    { name: "Sell", href: "/sell", highlight: true }
+  ];
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Handle search logic here
+    console.log('Search submitted');
+  };
+
+  const handleSignUp = () => {
+    // Handle sign up logic here
+    console.log('Sign up clicked');
+    // You can redirect to signup page or open a modal
+    window.location.href = '/register';
+  };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
-              <div className="bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white p-2 rounded-lg">
-                <FiAward className="h-6 w-6" />
-              </div>
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] bg-clip-text text-transparent">
-              TRADEAUCT
-            </h1>
-          </div>
-
-          {/* Search Bar - Desktop */}
-          <div className="hidden lg:flex flex-1 max-w-lg mx-8">
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FiSearch className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1e518e] focus:border-transparent"
-                placeholder="Search auctions, products..."
-              />
-            </div>
+    <header className="bg-white text-black shadow-lg border-b border-gray-200 sticky top-0 z-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Main Header */}
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="text-2xl font-bold cursor-pointer tracking-tighter bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">
+            TRADEAUCT
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="flex items-center space-x-1 text-gray-700 hover:text-[#1e518e] font-medium transition duration-200">
-              <FiHome className="h-4 w-4" />
-              <span>Home</span>
-            </a>
-            <a href="#" className="flex items-center space-x-1 text-gray-700 hover:text-[#1e518e] font-medium transition duration-200">
-              <FiClock className="h-4 w-4" />
-              <span>Live Auctions</span>
-            </a>
-            <a href="#" className="flex items-center space-x-1 text-gray-700 hover:text-[#1e518e] font-medium transition duration-200">
-              <FiGrid className="h-4 w-4" />
-              <span>Categories</span>
-            </a>
-           
-          </nav>
-
-          {/* Desktop Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            
-            {/* Search Icon - Mobile */}
-            <button className="lg:hidden text-gray-600 hover:text-[#1e518e] p-2">
-              <FiSearch className="h-5 w-5" />
-            </button>
-
-            {/* Wishlist */}
-            <button className="relative text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-              <FiHeart className="h-5 w-5" />
-              
-            </button>
-
-            {/* Cart */}
-            <button className="relative text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-              <FiShoppingCart className="h-5 w-5" />
-             
-            </button>
-
-
-            {/* Auth Buttons / User Menu */}
-            {isLoggedIn ? (
-              <div className="relative">
-                <button 
-                  onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition duration-200"
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <div key={link.name} className="relative">
+                <a
+                  href={link.href}
+                  className={`font-medium hover:text-gray-600 transition-colors duration-200 flex items-center space-x-1 ${
+                    link.highlight ? 'text-blue-600 hover:text-blue-700' : ''
+                  }`}
                 >
-                  <FiUser className="h-5 w-5 text-gray-700" />
-                  <span className="font-medium text-gray-700">John Doe</span>
-                </button>
-                
-                {/* User Dropdown */}
-                {showUserDropdown && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#1e518e]">
-                      <FiUser className="h-4 w-4" />
-                      <span>My Profile</span>
-                    </a>
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#1e518e]">
-                      <FiAward className="h-4 w-4" />
-                      <span>My Bids</span>
-                    </a>
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#1e518e]">
-                      <FiHeart className="h-4 w-4" />
-                      <span>Wishlist</span>
-                    </a>
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#1e518e]">
-                      <FiShoppingCart className="h-4 w-4" />
-                      <span>My Orders</span>
-                    </a>
-                    <div className="border-t border-gray-200 my-1"></div>
-                    <button 
-                      onClick={() => setIsLoggedIn(false)}
-                      className="flex items-center space-x-2 w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
-                    >
-                      <FiLogIn className="h-4 w-4" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                )}
+                  <span>{link.name}</span>
+                  {link.badge && (
+                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                      {link.badge}
+                    </span>
+                  )}
+                </a>
               </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <button className="flex items-center space-x-2 text-gray-700 hover:text-[#1e518e] font-medium transition duration-200">
-                  <FiLogIn className="h-4 w-4" />
-                  <span>Login</span>
-                </button>
-                <button className="flex items-center space-x-2 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white px-4 py-2 rounded-lg font-medium hover:from-[#1a4780] hover:to-[#0055a0] transition duration-200 shadow-md" onClick={handleSignup}>
-                  <FiUserPlus className="h-4 w-4" />
-                  <span>Sign Up</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <button className="text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-              <FiSearch className="h-5 w-5" />
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-[#1e518e] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#1e518e] transition duration-200"
-            >
-              {isMenuOpen ? (
-                <FiX className="h-6 w-6" />
-              ) : (
-                <FiMenu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-              
-              {/* Mobile Search */}
-              <div className="px-3 pb-3">
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiSearch className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#1e518e] focus:border-transparent"
-                    placeholder="Search auctions..."
-                  />
-                </div>
-              </div>
-
-              {/* Navigation Links */}
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiHome className="h-5 w-5" />
-                <span>Home</span>
-              </a>
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiClock className="h-5 w-5" />
-                <span>Live Auctions</span>
-              </a>
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiGrid className="h-5 w-5" />
+            ))}
+            
+            {/* Categories Dropdown */}
+            <div className="relative group" ref={categoriesDropdownRef}>
+              <button className="font-medium hover:text-gray-600 transition-colors duration-200 flex items-center space-x-1">
                 <span>Categories</span>
-              </a>
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiAward className="h-5 w-5" />
-                <span>Featured Items</span>
-              </a>
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiInfo className="h-5 w-5" />
-                <span>About</span>
-              </a>
-              <a href="#" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                <FiPhone className="h-5 w-5" />
-                <span>Contact</span>
-              </a>
-
-              {/* Mobile Action Buttons */}
-              <div className="pt-3 border-t border-gray-200">
-                <div className="flex space-x-2 px-3 pb-2">
-                  <button className="flex-1 flex items-center justify-center space-x-2 text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-                    <FiHeart className="h-5 w-5" />
-                    <span className="text-sm">Wishlist</span>
-                  </button>
-                  <button className="flex-1 flex items-center justify-center space-x-2 text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-                    <FiShoppingCart className="h-5 w-5" />
-                    <span className="text-sm">Cart</span>
-                  </button>
-                  <button className="flex-1 flex items-center justify-center space-x-2 text-gray-600 hover:text-[#1e518e] p-2 transition duration-200">
-                    <FiBell className="h-5 w-5" />
-                    <span className="text-sm">Alerts</span>
-                  </button>
+                <FaChevronDown className="text-xs mt-0.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="absolute hidden group-hover:block bg-white text-black mt-2 rounded-xl shadow-2xl border border-gray-200 min-w-[240px] z-50 overflow-hidden">
+                <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                  <h3 className="font-semibold text-sm text-gray-700">Auction Categories</h3>
                 </div>
-
-                {/* Mobile Auth Buttons */}
-                {isLoggedIn ? (
-                  <div className="space-y-2">
-                    <button className="w-full flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                      <FiUser className="h-5 w-5" />
-                      <span>My Profile</span>
-                    </button>
-                    <button 
-                      onClick={() => setIsLoggedIn(false)}
-                      className="w-full flex items-center space-x-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium transition duration-200"
-                    >
-                      <FiLogIn className="h-5 w-5" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <button className="w-full flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-[#1e518e] hover:bg-blue-50 rounded-lg font-medium transition duration-200">
-                      <FiLogIn className="h-5 w-5" />
-                      <span>Login</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-3 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white px-3 py-2 rounded-lg font-medium hover:from-[#1a4780] hover:to-[#0055a0] transition duration-200">
-                      <FiUserPlus className="h-5 w-5" />
-                      <span>Sign Up</span>
-                    </button>
-                  </div>
-                )}
+                {categories.map((category) => (
+                  <a
+                    key={category.name}
+                    href={category.href}
+                    className="flex items-center space-x-3 px-6 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors duration-200 group"
+                  >
+                    <span className="text-lg">{category.icon}</span>
+                    <span className="font-medium group-hover:text-gray-700">{category.name}</span>
+                  </a>
+                ))}
               </div>
             </div>
+          </nav>
+
+          {/* Desktop Search & User */}
+          <div className="hidden lg:flex items-center space-x-6">
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <input
+                type="text"
+                placeholder="Search auctions..."
+                className={`rounded-full px-4 py-2.5 text-gray-900 border transition-all duration-200 focus:outline-none w-64 ${
+                  isSearchFocused 
+                    ? 'border-gray-400 ring-2 ring-gray-200' 
+                    : 'border-gray-300'
+                }`}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+              />
+              <button 
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              >
+                <FaSearch />
+              </button>
+            </form>
+            
+            <div className="flex items-center space-x-4">
+              <a 
+                href="/account" 
+                className="flex items-center space-x-2 hover:text-gray-600 transition-colors duration-200 group"
+              >
+                <div className="p-2 rounded-full bg-gray-100 group-hover:bg-gray-200 transition-colors duration-200">
+                  <FaUser className="text-sm" />
+                </div>
+                <span className="font-medium">Account</span>
+              </a>
+              
+              {/* Sign Up Button - Desktop */}
+              <button
+                onClick={handleSignUp}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-full font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center space-x-2"
+              >
+                <span>Sign Up</span>
+                <FaArrowRight className="text-xs" />
+              </button>
+            </div>
           </div>
-        )}
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
+        </div>
+
+        {/* Mobile Search Bar - Always visible on mobile */}
+        <div className="lg:hidden pb-4">
+          <form onSubmit={handleSearchSubmit} className="relative">
+            <input
+              type="text"
+              placeholder="Search auctions, brands, categories..."
+              className="w-full rounded-full px-4 py-3 text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+            />
+            <button 
+              type="submit"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+            >
+              <FaSearch />
+            </button>
+          </form>
+        </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          ref={mobileMenuRef}
+          className="lg:hidden bg-white border-t border-gray-200 animate-fade-in"
+        >
+          <div className="container mx-auto px-4 py-4">
+            {/* Mobile Navigation Links */}
+            <nav className="flex flex-col space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`flex items-center justify-between font-medium py-3 px-4 rounded-lg transition-colors duration-200 ${
+                    link.highlight 
+                      ? 'bg-blue-50 text-blue-600 hover:bg-blue-100' 
+                      : 'hover:bg-gray-50 hover:text-gray-700'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span>{link.name}</span>
+                  {link.badge && (
+                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                      {link.badge}
+                    </span>
+                  )}
+                </a>
+              ))}
+              
+              {/* Mobile Categories */}
+              <div className="border-t border-gray-100 pt-3">
+                <button
+                  className="flex items-center justify-between w-full font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-left"
+                  onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <FaGavel className="text-gray-500" />
+                    <span>Categories</span>
+                  </div>
+                  <FaChevronDown 
+                    className={`text-xs transition-transform duration-200 ${
+                      isCategoriesOpen ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                
+                {isCategoriesOpen && (
+                  <div className="mt-1 ml-4 space-y-1 bg-gray-50 rounded-lg p-2">
+                    {categories.map((category) => (
+                      <a
+                        key={category.name}
+                        href={category.href}
+                        className="flex items-center space-x-3 py-2.5 px-3 text-gray-700 hover:text-black hover:bg-white rounded-md transition-all duration-200"
+                        onClick={() => {
+                          setIsCategoriesOpen(false);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        <span className="text-lg">{category.icon}</span>
+                        <span className="font-medium">{category.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Account Links */}
+              <div className="border-t border-gray-100 pt-4 space-y-3">
+                <a
+                  href="/account"
+                  className="flex items-center space-x-3 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="p-2 rounded-full bg-gray-100">
+                    <FaUser className="text-sm" />
+                  </div>
+                  <span>My Account</span>
+                </a>
+                
+                {/* Mobile Sign Up Button */}
+                <button
+                  onClick={() => {
+                    handleSignUp();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3.5 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md flex items-center justify-center space-x-2"
+                >
+                  <span>Sign Up Free</span>
+                  <FaArrowRight className="text-xs" />
+                </button>
+                
+                {/* Additional mobile-only sign up prompt */}
+                <div className="bg-blue-50 rounded-lg p-4 text-center">
+                  <p className="text-sm text-blue-800 font-medium mb-2">
+                    Join thousands of auction enthusiasts
+                  </p>
+                  <p className="text-xs text-blue-600">
+                    Free to sign up • No commitment
+                  </p>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

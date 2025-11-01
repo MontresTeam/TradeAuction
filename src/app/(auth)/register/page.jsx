@@ -597,7 +597,7 @@ const Register = () => {
                       </div>
                     )}
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 rounded-2xl transition-all flex items-center justify-center">
+                  <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-10 rounded-2xl transition-all flex items-center justify-center">
                     <FiUpload className="h-6 w-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <input 
