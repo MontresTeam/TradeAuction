@@ -20,29 +20,29 @@ const BannerPage = () => {
     {
       id: 1,
       image: "https://i.ibb.co/TMkmLNGw/26425.jpg",
-      tag: "OUR VISION",
-      title: "DESIGN",
+      tag: "PREMIUM AUCTIONS",
+      title: "BID & WIN",
       description:
-        "Credibly leverage existing business experiences through magnetic mindshare. Synergistically exploit efficient partnerships world-class applications.",
-      buttonText: "Take A Look",
+        "Discover exclusive items from luxury watches to rare collectibles. Participate in real-time bidding and secure your dream possessions at competitive prices.",
+      buttonText: "View Auctions",
     },
     {
       id: 2,
       image: "https://i.ibb.co/VWGwrr6B/641.jpg",
-      tag: "INSPIRATION",
-      title: "MOTION",
+      tag: "LIVE BIDDING",
+      title: "AUCTION NOW",
       description:
-        "Conveniently formulate progressive users for error-free interfaces. Monotonectally deploy superior relationships without seamless infomediaries.",
-      buttonText: "See More",
+        "Join our live auction events featuring art, antiques, and luxury goods. Experience the thrill of competitive bidding with real-time updates.",
+      buttonText: "Join Live",
     },
     {
       id: 3,
       image: "https://i.ibb.co/nsM9MSZZ/129770.jpg",
-      tag: null,
-      title: "ENGINE",
+      tag: "REGISTER NOW",
+      title: "GET APPROVED",
       description:
-        "Conveniently formulate progressive users for error-free interfaces. Monotonectally deploy superior relationships without seamless infomediaries.",
-      buttonText: "Take A Look",
+        "Become a registered bidder to access premium auctions. Complete verification and start bidding on exclusive items with secure payment options.",
+      buttonText: "Register Today",
     },
   ];
 
@@ -88,7 +88,7 @@ const BannerPage = () => {
                 >
                   <img
                     src={slide.image}
-                    alt="full_screen-image"
+                    alt="auction-banner"
                     className="w-full h-screen object-cover"
                   />
                   <div

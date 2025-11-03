@@ -739,7 +739,7 @@ const Register = () => {
   );
 
   const VendorVerification = () => (
-    <div className="min-h-screen bg-gradient-to-br from-[#1e518e] to-[#0061b0ee] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br  flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
         <div className="bg-white rounded-3xl shadow-2xl p-8">
           {/* Header */}

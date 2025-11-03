@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import RolexImage from "../../../public/RolexBan.jpg";
-import CartierImage from "../../../public/CartierBnann.jpg";
-import AudemarsPiguetImage from "../../../public/Audemars PiguetBann.jpg";
-import PatekPhilippeImage from "../../../public/PatekPhilippeBann.jpg";
+import RolexImage from "../../assets/RolexBan.jpg";
+import CartierImage from "../../assets/CartierBnann.jpg";
+import AudemarsPiguetImage from "../../assets/Audemars PiguetBann.jpg";
+import PatekPhilippeImage from "../../assets/PatekPhilippeBann.jpg";
 
 const LayoutDesign = () => {
   const brands = [
