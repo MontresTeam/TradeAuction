@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import ImagesOmega from '../../../../public/OmegaNew.jpg'
+import ImagesOmega from '../../../assets/OmegaNew.jpg'
 import Image from 'next/image';
 import SimilarProduct from '../SimilarProduct/page';
 const ItemDetailsPage = () => {
