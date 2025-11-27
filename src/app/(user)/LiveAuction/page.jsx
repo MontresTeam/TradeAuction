@@ -1,122 +1,14 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
 
 const LiveAuction = () => {
   const [timeLeft, setTimeLeft] = useState({});
   const [activeFilter, setActiveFilter] = useState('all');
-
-  const auctions = [
-    {
-      id: 1,
-      title: "Vintage Rolex Submariner",
-      currentBid: 2450,
-      startingBid: 1200,
-      bidCount: 42,
-      image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T23:59:59",
-      category: "watches",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Cartier Tank Watch",
-      currentBid: 3200,
-      startingBid: 1800,
-      bidCount: 28,
-      image: "https://images.unsplash.com/photo-1547996160-81dfd58739ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T20:30:00",
-      category: "watches",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "Chanel Classic Flap Bag",
-      currentBid: 6500,
-      startingBid: 4200,
-      bidCount: 35,
-      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T18:45:00",
-      category: "bags",
-      featured: true
-    },
-    {
-      id: 4,
-      title: "Hermès Birkin 30",
-      currentBid: 18500,
-      startingBid: 12000,
-      bidCount: 22,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T22:15:00",
-      category: "bags",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Diamond Tennis Bracelet",
-      currentBid: 8900,
-      startingBid: 5500,
-      bidCount: 31,
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T19:20:00",
-      category: "jewelry",
-      featured: true
-    },
-    {
-      id: 6,
-      title: "Pearl & Gold Necklace",
-      currentBid: 3200,
-      startingBid: 1800,
-      bidCount: 18,
-      image: "https://images.unsplash.com/photo-1599643478510-a349350e6e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T21:10:00",
-      category: "jewelry",
-      featured: false
-    },
-    {
-      id: 7,
-      title: "Patek Philippe Nautilus",
-      currentBid: 45200,
-      startingBid: 35000,
-      bidCount: 15,
-      image: "https://images.unsplash.com/photo-1622434641406-a158123450f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T23:30:00",
-      category: "watches",
-      featured: true
-    },
-    {
-      id: 8,
-      title: "Louis Vuitton Neverfull",
-      currentBid: 2200,
-      startingBid: 1400,
-      bidCount: 27,
-      image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T20:00:00",
-      category: "bags",
-      featured: false
-    },
-    {
-      id: 9,
-      title: "Audemars Piguet Royal Oak",
-      currentBid: 38500,
-      startingBid: 28000,
-      bidCount: 19,
-      image: "https://images.unsplash.com/photo-1609588041311-aa9c516e7b6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T23:15:00",
-      category: "watches",
-      featured: true
-    },
-    {
-      id: 10,
-      title: "Dior Saddle Bag",
-      currentBid: 2800,
-      startingBid: 1600,
-      bidCount: 24,
-      image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      timeEnd: "2024-12-31T21:45:00",
-      category: "bags",
-      featured: false
-    }
-  ];
+  const [auctions, setAuctions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const categories = [
     { id: 'all', name: 'All Items' },
@@ -125,19 +17,73 @@ const LiveAuction = () => {
     { id: 'jewelry', name: 'Jewelry' }
   ];
 
+  // Fetch auction products from API
+  useEffect(() => {
+    const fetchAuctions = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('http://localhost:8000/api/auctionAdmin/auction-products');
+        
+        if (response.data.success) {
+          // Transform API data to match component format
+          const transformedAuctions = response.data.data.map(auction => {
+            const product = auction.product;
+            
+            // ✅ Fix: Extract main image properly
+            const mainImage = product.images?.[0]?.url || 
+                            product["images[0]"]?.url || 
+                            "/placeholder.png";
+
+            // Determine category based on product data
+            let category = 'watches'; // default to watches
+            if (product.categorisOne === 'watch') category = 'watches';
+            // You can add more category mappings based on your product data
+            
+            return {
+              id: auction._id,
+              title: product.name,
+              currentBid: auction.currentBid,
+              startingBid: auction.startingBid,
+              bidCount: auction.bidCount,
+              image: mainImage,
+              timeEnd: auction.auctionEnd,
+              category: category,
+              featured: product.featured || false,
+              // Additional fields from API that might be useful
+              auctionStatus: auction.auctionStatus,
+              auctionType: auction.auctionType,
+              reservePrice: auction.reservePrice,
+              minimumBidIncrement: auction.minimumBidIncrement,
+              buyNowPrice: auction.buyNowPrice
+            };
+          });
+          
+          setAuctions(transformedAuctions);
+        }
+      } catch (err) {
+        console.error('Error fetching auctions:', err);
+        setError('Failed to load auctions');
+        // Fallback to dummy data if API fails
+        setAuctions(getDummyAuctions());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAuctions();
+  }, []);
+
+ 
+
   // Initialize with dummy countdown times
-  const initialTimes = {
-    1: { hours: 12, minutes: 34, seconds: 56 },
-    2: { hours: 8, minutes: 15, seconds: 22 },
-    3: { hours: 6, minutes: 45, seconds: 18 },
-    4: { hours: 10, minutes: 28, seconds: 43 },
-    5: { hours: 7, minutes: 12, seconds: 5 },
-    6: { hours: 9, minutes: 5, seconds: 37 },
-    7: { hours: 13, minutes: 20, seconds: 14 },
-    8: { hours: 5, minutes: 48, seconds: 29 },
-    9: { hours: 11, minutes: 55, seconds: 8 },
-    10: { hours: 8, minutes: 32, seconds: 51 }
-  };
+  const initialTimes = {};
+  auctions.forEach(auction => {
+    initialTimes[auction.id] = { 
+      hours: Math.floor(Math.random() * 12) + 1, 
+      minutes: Math.floor(Math.random() * 60), 
+      seconds: Math.floor(Math.random() * 60) 
+    };
+  });
 
   const [dummyTimes, setDummyTimes] = useState(initialTimes);
 
@@ -172,7 +118,7 @@ const LiveAuction = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [auctions]);
 
   const filteredAuctions = activeFilter === 'all' 
     ? auctions 
@@ -181,6 +127,35 @@ const LiveAuction = () => {
   const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
   };
+
+  // ✅ Fix: Add proper image dimensions for placeholder
+  const placeholderImage = {
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%239ca3af'%3EImage not available%3C/text%3E%3C/svg%3E",
+    width: 400,
+    height: 300
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading auctions...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && auctions.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-lg mb-2">Error</div>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-6 px-4 sm:px-6 lg:px-8">
@@ -231,7 +206,7 @@ const LiveAuction = () => {
           ))}
         </div>
 
-        {/* Auction Grid - 2 items on mobile, 5 items on desktop */}
+        {/* Auction Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-12">
           {filteredAuctions.map(auction => (
             <div
@@ -249,10 +224,17 @@ const LiveAuction = () => {
 
               {/* Image Container */}
               <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
-                <img
-                  src={auction.image}
+                <Image
+                  src={auction.image || placeholderImage.src}
                   alt={auction.title}
+                  width={400}
+                  height={300}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  onError={(e) => {
+                    e.target.src = placeholderImage.src;
+                  }}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 
@@ -269,7 +251,7 @@ const LiveAuction = () => {
                   {auction.title}
                 </h3>
 
-                {/* Timer Section - Moved below item name */}
+                {/* Timer Section */}
                 <div className="mb-2 sm:mb-3">
                   <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white py-2 px-3 rounded-lg sm:rounded-xl">
                     <div className="flex justify-between items-center text-xs">

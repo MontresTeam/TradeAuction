@@ -1,149 +1,142 @@
-import React from 'react';
+import React from 'react'
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 relative">
-      {/* CTA Section */}
-      <div className="border-b border-gray-700 py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Location */}
-            <div className="flex items-start space-x-4">
-              <div className="text-orange-500 text-2xl mt-1">
-                <i className="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <h4 className="text-white text-xl font-semibold mb-1">Find us</h4>
-                <span className="text-gray-400">Moza Plaza - 1 Al Khor St - Deira - Dubai</span>
-              </div>
-            </div>
-            
-            {/* Phone */}
-            <div className="flex items-start space-x-4">
-              <div className="text-orange-500 text-2xl mt-1">
-                <i className="fas fa-phone"></i>
-              </div>
-              <div>
-                <h4 className="text-white text-xl font-semibold mb-1">Call us</h4>
-                <span className="text-gray-400">+97142671124</span>
-              </div>
-            </div>
-            
-            {/* Email */}
-            <div className="flex items-start space-x-4">
-              <div className="text-orange-500 text-2xl mt-1">
-                <i className="far fa-envelope-open"></i>
-              </div>
-              <div>
-                <h4 className="text-white text-xl font-semibold mb-1">Mail us</h4>
-                <span className="text-gray-400">support@tradeauct.com</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div className="bg-gray-900 text-white">
       {/* Main Footer Content */}
-      <div className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Company Info */}
-            <div className="space-y-6">
-              <div className="mb-6">
-                <a href="/" className="block">
-                  <span className="text-white text-2xl font-bold">TRADEAUCT</span>
-                </a>
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <h3 className="text-2xl font-bold mb-4 text-yellow-400">TradeOct</h3>
+            <p className="text-gray-300 mb-4 leading-relaxed">
+              Your trusted partner for exclusive auctions and premium items. 
+              Discover unique opportunities and bid with confidence.
+            </p>
+            <div className="space-y-2 text-sm text-gray-300">
+              <div className="flex items-center space-x-3">
+                <FaMapMarkerAlt className="text-yellow-400 flex-shrink-0" />
+                <span>123 Business District, Dubai, UAE</span>
               </div>
-              <div className="text-gray-400 leading-relaxed">
-                <p>TRADEAUCT is your premier online auction platform for rare collectibles, luxury items, and exclusive assets. 
-                Join our community of serious bidders and sellers today.</p>
+              <div className="flex items-center space-x-3">
+                <FaPhone className="text-yellow-400 flex-shrink-0" />
+                <span>+971 4 123 4567</span>
               </div>
-              <div className="space-y-4">
-                <span className="text-white font-semibold block">Follow us</span>
-                <div className="flex space-x-3">
-                  <a href="#" className="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" className="bg-blue-400 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                  <a href="#" className="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
-                    <i className="fab fa-google-plus-g"></i>
-                  </a>
-                </div>
+              <div className="flex items-center space-x-3">
+                <FaEnvelope className="text-yellow-400 flex-shrink-0" />
+                <span>info@tradeoct.com</span>
               </div>
             </div>
+          </div>
 
-            {/* Useful Links */}
-            <div className="space-y-6">
-              <div className="relative">
-                <h3 className="text-white text-xl font-semibold mb-4">Auction Links</h3>
-                <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-orange-500 -mb-4"></div>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Live Auctions</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Upcoming Auctions</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Past Auctions</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Bid Now</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Sell with Us</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Auction Calendar</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Buyer's Guide</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Seller's Guide</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">FAQ</a>
-                <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors block py-1">Support</a>
-              </div>
-            </div>
-
-            {/* Newsletter */}
-            <div className="space-y-6">
-              <div className="relative">
-                <h3 className="text-white text-xl font-semibold mb-4">Auction Updates</h3>
-                <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-orange-500 -mb-4"></div>
-              </div>
-              <div className="text-gray-400 leading-relaxed">
-                <p>Don't miss out on exclusive auctions and rare items. Subscribe to get notified about upcoming auctions and special events.</p>
-              </div>
-              <div className="relative">
-                <form className="flex">
-                  <input 
-                    type="email" 
-                    placeholder="Email Address"
-                    className="flex-1 bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  />
-                  <button 
-                    type="submit"
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-r-lg transition-colors"
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-yellow-400 inline-block">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {['About', 'Auctions', 'Contact', 'FAQ', 'Terms', 'Privacy'].map((item) => (
+                <li key={item}>
+                  <a 
+                    href={`/${item.toLowerCase()}`} 
+                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-200 flex items-center group"
                   >
-                    <i className="fab fa-telegram-plane"></i>
-                  </button>
-                </form>
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-yellow-400 inline-block">
+              Newsletter
+            </h3>
+            <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+              Subscribe to get updates on latest auctions, exclusive items, and special offers.
+            </p>
+            <form className="space-y-3">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors duration-200 transform hover:scale-105 active:scale-95"
+              >
+                Subscribe Now
+              </button>
+            </form>
+          </div>
+
+          {/* Social & Map */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-semibold mb-6 pb-2 border-b-2 border-yellow-400 inline-block">
+              Follow Us
+            </h3>
+            
+            {/* Social Media */}
+            <div className="flex space-x-4 mb-6">
+              {[
+                { icon: FaFacebookF, url: 'https://facebook.com', color: 'hover:text-blue-400' },
+                { icon: FaTwitter, url: 'https://twitter.com', color: 'hover:text-blue-300' },
+                { icon: FaInstagram, url: 'https://instagram.com', color: 'hover:text-pink-400' },
+                { icon: FaLinkedinIn, url: 'https://linkedin.com', color: 'hover:text-blue-500' }
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`bg-gray-800 p-3 rounded-full text-white transition-all duration-200 transform hover:scale-110 ${social.color}`}
+                >
+                  <social.icon className="text-lg" />
+                </a>
+              ))}
+            </div>
+
+            {/* Mini Map */}
+            <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+              <div className="w-full h-32 rounded-lg overflow-hidden">
+                <iframe
+                  title="TradeOct Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.123456789!2d55.123456!3d25.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f123456789abc%3A0x123456789abcdef!2sYour%20Business%20Address!5e0!3m2!1sen!2sae!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  className="filter grayscale hover:grayscale-0 transition-all duration-300"
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="bg-gray-800 py-6">
-        <div className="container mx-auto px-4">
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-center md:text-left">
-              <p className="text-gray-400 text-sm">
-                Copyright &copy; {new Date().getFullYear()} TRADEAUCT. All Rights Reserved.
-              </p>
+            <div className="text-gray-400 text-sm text-center md:text-left">
+              &copy; {new Date().getFullYear()} TradeOct. All rights reserved.
             </div>
-            <div className="flex flex-wrap justify-center md:justify-end space-x-6">
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">Home</a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">Policy</a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">Contact</a>
+            <div className="flex space-x-6 text-sm text-gray-400">
+              <a href="/privacy" className="hover:text-yellow-400 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-yellow-400 transition-colors">Terms of Service</a>
+              <a href="/cookies" className="hover:text-yellow-400 transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  )
+}
 
-export default Footer;
+export default Footer

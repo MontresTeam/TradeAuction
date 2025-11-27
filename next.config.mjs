@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    unoptimized: true,
+    images: {
+    domains: ["technodsolutions.com","res.cloudinary.com","via.placeholder.com","i.ibb.co"], 
   },
 };
 
