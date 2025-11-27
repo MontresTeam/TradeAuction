@@ -16,7 +16,7 @@ export default function VerifyEmailPage() {
 
     const verifyEmail = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/auth/verify-email/${token}`);
+        const res = await axios.get(`https://trdeoct-backend.onrender.com/api/auth/verify-email/${token}`);
         setMessage(res.data.message);
         setVerified(true);
       } catch (err) {

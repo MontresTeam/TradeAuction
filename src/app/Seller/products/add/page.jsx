@@ -3,13 +3,10 @@ import React, { useState } from 'react';
 import { 
   FiUpload, 
   FiImage, 
-  FiDollarSign, 
   FiFileText,
   FiX,
   FiPlus,
-  FiClock,
   FiAward,
-  FiTruck,
   FiWatch,
   FiCalendar,
   FiCheck,
@@ -17,6 +14,7 @@ import {
   FiDroplet,
   FiSettings
 } from 'react-icons/fi';
+import SellerPricingSection from './SellerPricingSection';
 
 const UploadProduct = () => {
   const [productData, setProductData] = useState({
@@ -53,36 +51,8 @@ const UploadProduct = () => {
     crystal: '',
     dialNumerals: '',
     
-    // Pricing
-    regularPrice: '',
-    salePrice: '',
-    taxStatus: 'none',
-    
-    // Inventory
-    stockQuantity: 1,
-    
-    // Listing Details
-    visibility: 'visible',
-    badges: [],
-    
-    // Sales Type
-    listingType: 'auction',
-    
-    // Auction Fields
-    startingPrice: '',
-    bidIncrement: '',
-    duration: '7',
-    reservePrice: '',
-    
-    // Direct Sale Fields
-    fixedPrice: '',
-    minimumOffer: '',
-    
-    // Shipping
-    shippingOption: 'uae-only',
-    
     // Condition Assessment
-    conditionStatus: 'used', // 'new' or 'used'
+    conditionStatus: 'used',
     componentCondition: {
       case: 'none',
       dial: 'none',
@@ -115,7 +85,7 @@ const UploadProduct = () => {
 
   const [activeConditionTab, setActiveConditionTab] = useState('condition');
   const [images, setImages] = useState([]);
-  const [newBadge, setNewBadge] = useState('');
+  const [currentStep, setCurrentStep] = useState(1);
 
   // Condition Options
   const conditionOptions = [
@@ -232,33 +202,6 @@ const UploadProduct = () => {
     'Diamond'
   ];
 
-  const shippingOptions = [
-    { value: 'uae-only', label: 'UAE Only', description: 'Shipping within UAE only' },
-    { value: 'uae-gcc', label: 'UAE + GCC', description: 'Shipping to UAE and GCC countries' },
-    { value: 'worldwide', label: 'Worldwide (DHL)', description: 'International shipping via DHL' }
-  ];
-
-  const durations = [
-    { value: '1', label: '1 Day' },
-    { value: '3', label: '3 Days' },
-    { value: '5', label: '5 Days' },
-    { value: '7', label: '7 Days' },
-    { value: '10', label: '10 Days' },
-    { value: '14', label: '14 Days' }
-  ];
-
-  const taxStatusOptions = [
-    { value: 'none', label: 'None' },
-    { value: 'taxable', label: 'Taxable' },
-    { value: 'shipping', label: 'Shipping only' }
-  ];
-
-  const visibilityOptions = [
-    { value: 'visible', label: 'Visible' },
-    { value: 'hidden', label: 'Hidden' },
-    { value: 'private', label: 'Private' }
-  ];
-
   const conditionTabs = [
     { id: 'condition', label: 'Condition', icon: FiCheck },
     { id: 'replacements', label: 'Replacements', icon: FiSettings },
@@ -357,52 +300,6 @@ const UploadProduct = () => {
       const otherImages = prev.filter(img => img.id !== id);
       return [mainImage, ...otherImages];
     });
-  };
-
-  const addBadge = () => {
-    if (newBadge.trim() && !productData.badges.includes(newBadge.trim())) {
-      setProductData(prev => ({
-        ...prev,
-        badges: [...prev.badges, newBadge.trim()]
-      }));
-      setNewBadge('');
-    }
-  };
-
-  const removeBadge = (badgeToRemove) => {
-    setProductData(prev => ({
-      ...prev,
-      badges: prev.badges.filter(badge => badge !== badgeToRemove)
-    }));
-  };
-
-  const handleBadgeKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      addBadge();
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    
-    // Append product data
-    Object.keys(productData).forEach(key => {
-      if (Array.isArray(productData[key])) {
-        formData.append(key, JSON.stringify(productData[key]));
-      } else {
-        formData.append(key, productData[key]);
-      }
-    });
-    
-    // Append images
-    images.forEach(image => {
-      formData.append('images', image.file);
-    });
-    
-    console.log('Submitting product:', productData);
-    // Send to backend
   };
 
   // Condition Assessment Component
@@ -742,16 +639,51 @@ const UploadProduct = () => {
     </div>
   );
 
+  // Step Navigation
+  const StepNavigation = () => (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div className="flex items-center justify-between">
+        <div className="flex space-x-4">
+          <button
+            onClick={() => setCurrentStep(1)}
+            className={`px-6 py-3 rounded-xl font-semibold transition-colors ${
+              currentStep === 1 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            Product Details
+          </button>
+          <button
+            onClick={() => setCurrentStep(2)}
+            className={`px-6 py-3 rounded-xl font-semibold transition-colors ${
+              currentStep === 2 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            Pricing & Shipping
+          </button>
+        </div>
+        <div className="text-sm text-gray-500">
+          Step {currentStep} of 2
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 py-4">
-      <div className="max-w-4xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6">
         {/* Header */}
         <div className="mb-6 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Create New Listing</h1>
           <p className="text-gray-600 mt-1 text-sm sm:text-base">List your luxury item for auction or direct sale</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <StepNavigation />
+
+        {currentStep === 1 ? (
           <div className="space-y-6">
             {/* Basic Information Card */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
@@ -870,20 +802,6 @@ const UploadProduct = () => {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="e.g., 8A123456"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-2">
-                    SKU
-                  </label>
-                  <input
-                    type="text"
-                    name="sku"
-                    value={productData.sku}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                    placeholder="e.g., SKU-ROLEX-126610LN"
                   />
                 </div>
 
@@ -1183,367 +1101,6 @@ const UploadProduct = () => {
               </div>
             </div>
 
-            {/* Pricing & Sales Type Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                <FiDollarSign className="mr-2 text-blue-600" />
-                Pricing & Sales Type
-              </h2>
-              
-              <div className="space-y-6">
-                {/* Sales Type Selection */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-3">
-                    Listing Type *
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <label className={`flex flex-col p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                      productData.listingType === 'auction'
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}>
-                      <input
-                        type="radio"
-                        name="listingType"
-                        value="auction"
-                        checked={productData.listingType === 'auction'}
-                        onChange={handleInputChange}
-                        className="hidden"
-                      />
-                      <div className="flex items-center mb-2">
-                        <FiClock className="text-blue-600 mr-2" size={20} />
-                        <span className="font-semibold text-gray-900">Auction</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Sell to the highest bidder</p>
-                    </label>
-
-                    <label className={`flex flex-col p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                      productData.listingType === 'direct'
-                        ? 'border-green-500 bg-green-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}>
-                      <input
-                        type="radio"
-                        name="listingType"
-                        value="direct"
-                        checked={productData.listingType === 'direct'}
-                        onChange={handleInputChange}
-                        className="hidden"
-                      />
-                      <div className="flex items-center mb-2">
-                        <FiDollarSign className="text-green-600 mr-2" size={20} />
-                        <span className="font-semibold text-gray-900">Direct Sale</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Fixed price with offers</p>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Auction Fields */}
-                {productData.listingType === 'auction' && (
-                  <div className="space-y-4 bg-blue-50 p-4 rounded-xl">
-                    <h4 className="font-semibold text-gray-800 flex items-center">
-                      <FiClock className="mr-2 text-blue-600" />
-                      Auction Settings
-                    </h4>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Starting Price (AED) *
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="text-gray-400">AED</span>
-                          </div>
-                          <input
-                            type="number"
-                            name="startingPrice"
-                            value={productData.startingPrice}
-                            onChange={handleInputChange}
-                            className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                            placeholder="0.00"
-                            step="0.01"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Bid Increment (AED) *
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="text-gray-400">AED</span>
-                          </div>
-                          <input
-                            type="number"
-                            name="bidIncrement"
-                            value={productData.bidIncrement}
-                            onChange={handleInputChange}
-                            className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                            placeholder="0.00"
-                            step="0.01"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Auction Duration *
-                        </label>
-                        <select
-                          name="duration"
-                          value={productData.duration}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                          required
-                        >
-                          {durations.map(duration => (
-                            <option key={duration.value} value={duration.value}>
-                              {duration.label}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Reserve Price (AED)
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="text-gray-400">AED</span>
-                          </div>
-                          <input
-                            type="number"
-                            name="reservePrice"
-                            value={productData.reservePrice}
-                            onChange={handleInputChange}
-                            className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                            placeholder="0.00"
-                            step="0.01"
-                          />
-                        </div>
-                        <p className="text-xs text-gray-500 mt-1">Minimum price to sell (hidden from bidders)</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Direct Sale Fields */}
-                {productData.listingType === 'direct' && (
-                  <div className="space-y-4 bg-green-50 p-4 rounded-xl">
-                    <h4 className="font-semibold text-gray-800 flex items-center">
-                      <FiDollarSign className="mr-2 text-green-600" />
-                      Direct Sale Settings
-                    </h4>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Regular Price (AED)
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="text-gray-400">AED</span>
-                          </div>
-                          <input
-                            type="number"
-                            name="regularPrice"
-                            value={productData.regularPrice}
-                            onChange={handleInputChange}
-                            className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm sm:text-base"
-                            placeholder="0.00"
-                            step="0.01"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Sale Price (AED) *
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="text-gray-400">AED</span>
-                          </div>
-                          <input
-                            type="number"
-                            name="salePrice"
-                            value={productData.salePrice}
-                            onChange={handleInputChange}
-                            className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm sm:text-base"
-                            placeholder="0.00"
-                            step="0.01"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Minimum Acceptable Offer (AED)
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <span className="text-gray-400">AED</span>
-                        </div>
-                        <input
-                          type="number"
-                          name="minimumOffer"
-                          value={productData.minimumOffer}
-                          onChange={handleInputChange}
-                          className="pl-16 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm sm:text-base"
-                          placeholder="0.00"
-                          step="0.01"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Inventory */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Stock Quantity *
-                    </label>
-                    <input
-                      type="number"
-                      name="stockQuantity"
-                      value={productData.stockQuantity}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder="1"
-                      min="1"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Tax Status
-                    </label>
-                    <select
-                      name="taxStatus"
-                      value={productData.taxStatus}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                    >
-                      {taxStatusOptions.map(option => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Shipping & Additional Details Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                <FiTruck className="mr-2 text-blue-600" />
-                Shipping & Additional Details
-              </h2>
-              
-              <div className="space-y-6">
-                {/* Shipping Options */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-3">
-                    Shipping Options *
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {shippingOptions.map((option) => (
-                      <label
-                        key={option.value}
-                        className={`flex flex-col p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                          productData.shippingOption === option.value
-                            ? 'border-blue-500 bg-blue-50'
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="shippingOption"
-                          value={option.value}
-                          checked={productData.shippingOption === option.value}
-                          onChange={handleInputChange}
-                          className="hidden"
-                          required
-                        />
-                        <span className="font-medium text-gray-900">{option.label}</span>
-                        <span className="text-sm text-gray-600 mt-1">{option.description}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Badges */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-2">
-                    Badges
-                  </label>
-                  <div className="flex mb-2">
-                    <input
-                      type="text"
-                      value={newBadge}
-                      onChange={(e) => setNewBadge(e.target.value)}
-                      onKeyPress={handleBadgeKeyPress}
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder="Add badges (e.g., Certified, Vintage, Limited Edition)"
-                    />
-                    <button
-                      type="button"
-                      onClick={addBadge}
-                      className="px-4 py-3 bg-blue-600 text-white rounded-r-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <FiPlus size={16} />
-                    </button>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {productData.badges.map((badge, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium"
-                      >
-                        {badge}
-                        <button
-                          type="button"
-                          onClick={() => removeBadge(badge)}
-                          className="ml-2 text-blue-600 hover:text-blue-800"
-                        >
-                          <FiX size={14} />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Visibility */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-2">
-                    Visibility
-                  </label>
-                  <select
-                    name="visibility"
-                    value={productData.visibility}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
-                  >
-                    {visibilityOptions.map(option => (
-                      <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
             {/* Media Upload Card */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
@@ -1613,26 +1170,24 @@ const UploadProduct = () => {
               </div>
             </div>
 
-            {/* Submit Buttons */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
-              <div className="flex flex-col sm:flex-row gap-3 justify-end">
+            {/* Next Step Button */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="flex justify-end">
                 <button
-                  type="button"
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors font-medium text-sm sm:text-base"
+                  onClick={() => setCurrentStep(2)}
+                  className="px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-semibold shadow-sm"
                 >
-                  Save as Draft
-                </button>
-                
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-semibold shadow-sm text-sm sm:text-base"
-                >
-                  Publish Listing
+                  Continue to Pricing & Shipping
                 </button>
               </div>
             </div>
           </div>
-        </form>
+        ) : (
+          <SellerPricingSection 
+            onBack={() => setCurrentStep(1)}
+            productData={productData}
+          />
+        )}
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ const SellerSideBar = () => {
   }, [pathname]);
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: FiHome, path: '/vendor', notification: 0 },
+    { id: 'dashboard', label: 'Dashboard', icon: FiHome, path: '/Seller', notification: 0 },
  { id: 'products', label: 'Products', icon: FiPackage, path: '/Seller/products/add', notification: 3 },
     { id: 'upload', label: 'Upload Product', icon: FiPlus, path: '/vendorUploadProduct', notification: 0 },
     { id: 'analytics', label: 'Analytics', icon: FiBarChart2, path: '/vendor/analytics', notification: 0 },

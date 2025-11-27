@@ -182,7 +182,7 @@ const SellerRegistration = () => {
 
       // Send registration request with file
       const response = await axios.post(
-        'http://localhost:8000/api/auth/register/seller',
+        'https://trdeoct-backend.onrender.com/api/auth/register/seller',
         submitFormData,
         {
           headers: {
@@ -192,7 +192,7 @@ const SellerRegistration = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        showToast('Registration successful! Please check your WhatsApp for OTP and email for verification link.', 'success');
+        showToast('Registration successful! email for verification link.', 'success');
         
         // Redirect to OTP verification page after a short delay
         setTimeout(() => {
